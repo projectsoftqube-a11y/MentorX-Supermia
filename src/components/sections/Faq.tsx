@@ -127,7 +127,7 @@ export function Faq() {
             ))}
           </div>
 
-          <a className="faq__support" href={SITE.mailto} data-cursor="Email">
+          <a className="faq__support" href={`${SITE.mailto}?subject=${encodeURIComponent('MentorX support request')}`} data-cursor="Email">
             <span className="faq__supporticon" aria-hidden="true">
               <Mail strokeWidth={2.2} />
             </span>

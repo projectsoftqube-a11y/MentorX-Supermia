@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useRef, useState } from 'react'
 import Lenis from 'lenis'
 import { gsap, ScrollTrigger, prefersReducedMotion } from '@/lib/gsap'
 
@@ -43,6 +43,28 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     window.addEventListener('load', refresh)
     return () => window.removeEventListener('load', refresh)
   }, [])
+
+  // Arriving from another page with a hash (e.g. /#faq): pinned sections move things around while the
+  // page sets up, so jump to the section once layout has settled (once per visit)
+  const arrived = useRef(false)
+  useEffect(() => {
+    const id = window.location.hash
+    if (arrived.current || !id || id === '#') return
+    if (!prefersReducedMotion() && !lenis) return // wait for Lenis so it doesn't snap back
+    arrived.current = true
+    const go = () => {
+      ScrollTrigger.refresh()
+      const target = document.querySelector<HTMLElement>(id)
+      if (!target) return
+      if (lenis) lenis.scrollTo(target, { offset: -20, immediate: true })
+      else target.scrollIntoView()
+    }
+    const timer = window.setTimeout(() => {
+      if (document.readyState === 'complete') go()
+      else window.addEventListener('load', go, { once: true })
+    }, 300)
+    return () => window.clearTimeout(timer)
+  }, [lenis])
 
   // In-page anchors glide with Lenis (and still work without it)
   useEffect(() => {

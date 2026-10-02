@@ -37,7 +37,7 @@ export function WhoItsFor() {
         cards.slice(1).forEach((card, i) => {
           const prev = cards[i]
           tl.to(card, { yPercent: 0, rotate: 0, ease: 'power2.out', duration: 1 })
-            .to(prev, { scale: 0.92, yPercent: -6, ease: 'power2.out', duration: 1 }, '<')
+            .to(prev, { scale: 0.92, yPercent: -3, ease: 'power2.out', duration: 1 }, '<')
             .to(prev.querySelector('.persona__dim'), { opacity: 0.35, ease: 'power2.out', duration: 1 }, '<')
             // text rises with the card so it has landed by the time the card settles
             .from(card.querySelectorAll('.persona__copy > *'), { y: 60, autoAlpha: 0, stagger: 0.06, duration: 0.55 }, '<0.2')

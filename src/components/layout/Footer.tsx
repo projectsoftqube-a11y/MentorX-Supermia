@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import Link from 'next/link'
 import { gsap, useGSAP, prefersReducedMotion, whileVisible } from '@/lib/gsap'
 import { ArrowUp } from 'lucide-react'
 import { Img } from '@/components/ui/Img'
@@ -36,7 +37,7 @@ const RING_C = 2 * Math.PI * 22
  * a full-width wordmark whose letters lift toward the cursor, and a back-to-top button whose ring
  * shows how far down the page you are.
  */
-export function Footer() {
+export function Footer({ base = '' }: { base?: string }) {
   const root = useRef<HTMLElement>(null)
 
   // Fit the wordmark exactly to the container width (font metrics differ per screen, so measure them)
@@ -165,7 +166,7 @@ export function Footer() {
               <nav className="ft__col" key={col.title} aria-label={col.title}>
                 <h4>{col.title}</h4>
                 {col.links.map((l) => (
-                  <a key={l.label} href={l.href}>
+                  <a key={l.label} href={l.href.startsWith('#') ? base + l.href : l.href}>
                     <span>{l.label}</span>
                   </a>
                 ))}
@@ -207,8 +208,8 @@ export function Footer() {
             <p className="ft__copy">© 2026 MentorX. All rights reserved.</p>
             <div className="ft__legal">
               <nav className="ft__policies" aria-label="Legal">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms &amp; Conditions</a>
+                <Link href="/privacy-policy">Privacy Policy</Link>
+                <Link href="/terms-and-conditions">Terms &amp; Conditions</Link>
               </nav>
               <span className="ft__divider" aria-hidden="true" />
               <p className="ft__by">

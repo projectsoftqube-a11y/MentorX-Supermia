@@ -6,8 +6,11 @@ import { gsap, ScrollTrigger, useGSAP, prefersReducedMotion } from '@/lib/gsap'
 import { BtnArrow } from '@/components/ui/BtnArrow'
 import { NAV_LINKS as LINKS, SITE } from '@/data/landing'
 
-/** Glass pill nav: drops in on load, hides on scroll down, returns on scroll up */
-export function Nav() {
+/**
+ * Glass pill nav: drops in on load, hides on scroll down, returns on scroll up.
+ * `base` = "/" on other pages, so section links go back to the home page ("/#faq").
+ */
+export function Nav({ base = '' }: { base?: string }) {
   const root = useRef<HTMLElement>(null)
   const [open, setOpen] = useState(false)
 
@@ -33,12 +36,12 @@ export function Nav() {
   return (
     <header className="nav" ref={root}>
       <div className="nav__inner">
-        <a href="#top" className="nav__logo" aria-label="MentorX home">
+        <a href={base || '#top'} className="nav__logo" aria-label="MentorX home">
           <Image src="/brand/mentorx-logo.png" alt="MentorX" width={949} height={240} priority style={{ width: 'auto' }} />
         </a>
         <nav className="nav__links" aria-label="Primary">
           {LINKS.map((l) => (
-            <a key={l.href} href={l.href}>
+            <a key={l.href} href={base + l.href}>
               {l.label}
             </a>
           ))}
@@ -65,7 +68,7 @@ export function Nav() {
       </div>
       <div className="mobile-menu" id="mobileMenu" hidden={!open} onClick={() => setOpen(false)}>
         {LINKS.map((l) => (
-          <a key={l.href} href={l.href}>
+          <a key={l.href} href={base + l.href}>
             {l.label}
           </a>
         ))}
