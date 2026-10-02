@@ -1863,6 +1863,7 @@ body::after {
   position: absolute;
   inset: 0;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   place-items: center;
   padding: clamp(18px, 2.4vw, 36px);
   opacity: 0;
@@ -2373,6 +2374,8 @@ body::after {
   }
   .hw2__steps {
     display: grid;
+    /* minmax(0, 1fr): the column follows the screen, not the widest screen inside it */
+    grid-template-columns: minmax(0, 1fr);
     gap: 56px;
     padding-left: 0;
   }
@@ -2594,8 +2597,10 @@ body::after {
 }
 .studio__rec {
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   gap: 8px;
+  white-space: nowrap;
   padding: 5px 11px;
   border-radius: 999px;
   font-size: 11px;
@@ -5083,6 +5088,21 @@ body::after {
 
 /* Very small phones (320–400px) */
 @media (max-width: 400px) {
+  /* Brochure: a little more room for the download button */
+  .br__panel {
+    padding: 22px 18px;
+  }
+  .br__actions .btn--lg {
+    padding: 0 8px 0 20px;
+    font-size: 15px;
+  }
+  .br__actions .btn--lg.btn--ghost {
+    padding: 0 20px 0 8px;
+  }
+  /* How it works: the interviewer card drops its voice bars */
+  .sc__wave {
+    display: none;
+  }
   .chat__count {
     display: none;
   }
