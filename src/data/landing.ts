@@ -23,6 +23,8 @@ export const NAV_LINKS = [
 /* ---------------------------------- Hero ---------------------------------- */
 
 export const HERO = {
+  /** Pill above the headline; the last item is dropped on narrow phones */
+  eyebrow: ['AI mock interviews', 'Resume checks', 'Instant feedback'],
   titleLead: 'Walk into your next interview',
   titleAccent: 'already prepared.',
   sub: 'Practise real interview questions out loud, make sure your resume gets past the filters, and find out exactly what to improve - whenever you have twenty minutes.',
@@ -144,17 +146,17 @@ export const STEPS = [
   {
     title: 'Add your resume and the job',
     text: 'Upload a PDF, Word or text file and paste the job description. You’ll see your match score right away.',
-    img: '/img/study-flatlay.jpg',
+    points: ['PDF, Word or plain text', 'Paste any job description', 'Match score and missing keywords'],
   },
   {
     title: 'Practise a mock interview',
     text: 'Pick a level and answer out loud. The interviewer asks follow-ups, just like the real thing.',
-    img: '/img/mic-practice.jpg',
+    points: ['Beginner, intermediate or advanced', 'Follow-up questions, like a real panel', 'Voice-first, camera optional'],
   },
   {
     title: 'Review, improve, repeat',
     text: 'Read your report, fix one thing, and run it again. Watching your score climb is the best confidence boost.',
-    img: '/img/smiling-laptop.jpg',
+    points: ['A score across five skills', 'One clear thing to fix first', 'Run it again and watch it climb'],
   },
 ]
 
@@ -189,7 +191,7 @@ export const PERSONAS = [
     text: 'Rehearse leadership, decision-making and big-picture questions at an advanced level, and polish your resume for the next step up.',
     points: ['Advanced-level follow-up questions', 'Leadership and behavioural practice', 'A resume tuned to senior roles'],
     img: '/img/experienced-pro.jpg',
-    imgAlt: 'A smiling professional in a suit working on his laptop in a bright office',
+    imgAlt: 'A smiling professional working on his laptop in a bright, plant-filled office',
   },
 ]
 
@@ -199,6 +201,7 @@ export const PERSONAS = [
 export const LIVE = {
   eyebrow: 'A real-feeling interview',
   title: { lead: 'Practice that feels like', accent: 'the real room.' },
+  sub: 'Here is one practice question from start to finish: it asks, you answer, it follows up, and you see exactly what to improve.',
   steps: [
     { title: 'It asks', text: 'A calm AI voice asks real questions for your role and level.' },
     { title: 'You answer', text: 'Speak naturally - your words appear as a live transcript.' },
@@ -314,6 +317,27 @@ export const REVIEW = {
 }
 
 /* ----------------------------------- FAQ ----------------------------------- */
+
+/* -------------------------------- Brochure -------------------------------- */
+
+/** Downloadable guide. Drop the PDF at public/brochure/mentorx-brochure.pdf (or change `href`). */
+export const BROCHURE = {
+  eyebrow: 'The MentorX brochure',
+  lead: 'Everything about MentorX,',
+  accent: 'in one guide.',
+  sub: 'An 8-page guide to getting interview-ready with MentorX. Keep it for yourself, or share it with your students, team or career centre.',
+  href: '/brochure/mentorx-brochure.pdf',
+  fileName: 'MentorX-Brochure.pdf',
+  /** Shown under the buttons */
+  meta: 'PDF · 8 pages · 3.2 MB',
+  /** What's inside, in the brochure's own order */
+  chapters: [
+    { title: 'The “black box” of recruitment', text: 'Why qualified candidates get stuck: ATS filters, no structured practice, no feedback.' },
+    { title: 'How MentorX works', text: 'AI profile, ATS analysis, AI interview practice and instant insights.' },
+    { title: 'From rejection to confidence', text: 'The features behind better results, and why professionals choose MentorX.' },
+    { title: 'Getting started', text: 'Upload, target a role, optimise, practise and review - step by step.' },
+  ],
+}
 
 export const FAQS = [
   {

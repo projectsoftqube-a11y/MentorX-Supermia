@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react'
 import Image from 'next/image'
 import { gsap, ScrollTrigger, useGSAP, prefersReducedMotion } from '@/lib/gsap'
+import { BtnArrow } from '@/components/ui/BtnArrow'
 import { NAV_LINKS as LINKS, SITE } from '@/data/landing'
 
 /** Glass pill nav: drops in on load, hides on scroll down, returns on scroll up */
@@ -48,9 +49,7 @@ export function Nav() {
           </a>
           <a href={SITE.appUrl} className="btn btn--primary btn--sm magnetic" data-cursor="Go">
             <span className="btn__label">Get started</span>
-            <span className="btn__icon" aria-hidden="true">
-              →
-            </span>
+            <BtnArrow />
           </a>
           <button
             className="nav__burger"

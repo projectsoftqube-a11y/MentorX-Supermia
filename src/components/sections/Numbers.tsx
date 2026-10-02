@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import { gsap, useGSAP, ScrollTrigger, splitReveal, prefersReducedMotion, countUp, eyebrowIn, whileVisible } from '@/lib/gsap'
+import { Check } from 'lucide-react'
 import { NUMBERS } from '@/data/landing'
 
 /* Pentagon skill chart geometry (viewBox 0 0 200 200) */
@@ -173,7 +174,7 @@ export function Numbers() {
               {checks.items.map((item, i) => (
                 <li className="ck__row" key={item}>
                   <span className="ck__tick" aria-hidden="true">
-                    ✓
+                    <Check strokeWidth={3.2} />
                   </span>
                   {item}
                   <span className="ck__bar" style={{ width: `${[92, 78, 85, 70][i]}%` }} />

@@ -2,7 +2,9 @@
 
 import { useRef } from 'react'
 import { gsap, useGSAP, SplitText, ScrollTrigger, prefersReducedMotion, animateWaves, whileVisible } from '@/lib/gsap'
+import { AudioLines, Captions, Check, Mic, PhoneOff, Play, Sparkles } from 'lucide-react'
 import { Img } from '@/components/ui/Img'
+import { BtnArrow } from '@/components/ui/BtnArrow'
 import { HERO, HERO_DEMO, SITE } from '@/data/landing'
 
 const RING_C = 2 * Math.PI * 34
@@ -153,24 +155,35 @@ export function Hero() {
       }
 
       // ---- Intro ---------------------------------------------------------------
-      const scribble = el.querySelector<SVGPathElement>('.scribble path')!
-      const len = scribble.getTotalLength()
-      gsap.set(scribble, { strokeDasharray: len, strokeDashoffset: len })
       gsap.set(bars, { scaleX: 0 })
       gsap.set(tip, { autoAlpha: 0, y: 16 })
 
+      // autoSplit re-splits (after the web font loads, on resize) by restoring the original markup, which
+      // swaps in a fresh underline path - so the underline is looked up and drawn inside onSplit each time.
+      // Returning the timeline lets SplitText carry its progress over, so a re-split never replays it.
       SplitText.create('.hero2__title', {
         type: 'lines,words',
         mask: 'lines',
         linesClass: 'split-line',
         autoSplit: true,
-        onSplit: (self) =>
-          gsap.from(self.words, { yPercent: 120, rotate: 6, duration: 1.3, ease: 'expo.out', stagger: 0.05, delay: 0.1 }),
+        onSplit: (self) => {
+          const scribble = el.querySelector<SVGPathElement>('.scribble path')!
+          const len = scribble.getTotalLength()
+          return gsap
+            .timeline()
+            .from(self.words, { yPercent: 120, rotate: 6, duration: 1.3, ease: 'expo.out', stagger: 0.05 }, 0.1)
+            .fromTo(
+              scribble,
+              { strokeDasharray: len, strokeDashoffset: len },
+              { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut' },
+              1
+            )
+        },
       })
 
       gsap
         .timeline({ defaults: { ease: 'expo.out' } })
-        .to(scribble, { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut' }, 1)
+        .from('.hero2__eyebrow', { y: 20, autoAlpha: 0, duration: 1 }, 0)
         .from('.hero2__sub', { y: 30, autoAlpha: 0, duration: 1.1 }, 0.6)
         .from('.hero2__ctas > *', { y: 30, autoAlpha: 0, duration: 1, stagger: 0.1 }, 0.75)
         .from('.hero2__perks li', { y: 16, autoAlpha: 0, duration: 0.9, stagger: 0.07 }, 0.9)
@@ -292,6 +305,14 @@ export function Hero() {
             </div>
           ))}
         </div>
+        <p className="eyebrow hero2__eyebrow">
+          <span className="eyebrow__dot" aria-hidden="true" />
+          {HERO.eyebrow.map((item) => (
+            <span className="hero2__tag" key={item}>
+              {item}
+            </span>
+          ))}
+        </p>
         <h1 className="hero2__title">
           {HERO.titleLead}{' '}
           <span className="hero__accent">
@@ -307,13 +328,11 @@ export function Hero() {
         <div className="hero2__ctas">
           <a href={SITE.appUrl} className="btn btn--primary btn--lg magnetic" data-cursor="Start">
             <span className="btn__label">{HERO.primaryCta}</span>
-            <span className="btn__icon" aria-hidden="true">
-              →
-            </span>
+            <BtnArrow />
           </a>
           <a href="#how" className="btn btn--ghost btn--lg magnetic" data-cursor="Watch">
             <span className="btn__play" aria-hidden="true">
-              ▶
+              <Play fill="currentColor" strokeWidth={2} />
             </span>
             <span className="btn__label">{HERO.secondaryCta}</span>
           </a>
@@ -323,7 +342,7 @@ export function Hero() {
           {HERO.perks.map((p) => (
             <li key={p}>
               <span className="perk__tick" aria-hidden="true">
-                ✓
+                <Check strokeWidth={3.2} />
               </span>
               {p}
             </li>
@@ -385,10 +404,19 @@ export function Hero() {
           </div>
 
           <div className="call__dock" aria-hidden="true">
-            <span className="dock__btn">🎙</span>
-            <span className="dock__btn">⌁</span>
-            <span className="dock__btn dock__btn--cc">CC</span>
-            <span className="dock__end">End</span>
+            <span className="dock__btn">
+              <Mic />
+            </span>
+            <span className="dock__btn">
+              <AudioLines />
+            </span>
+            <span className="dock__btn dock__btn--cc">
+              <Captions />
+            </span>
+            <span className="dock__end">
+              <PhoneOff />
+              End
+            </span>
           </div>
         </div>
 
@@ -433,7 +461,7 @@ export function Hero() {
 
         <div className="float-card hv-tip" data-depth="1.6">
           <span className="hv-tip__icon" aria-hidden="true">
-            ✦
+            <Sparkles fill="currentColor" strokeWidth={1.5} />
           </span>
           <div>
             <p className="hv-tip__label">Coach tip</p>

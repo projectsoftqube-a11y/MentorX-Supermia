@@ -14,6 +14,7 @@ import { LiveInterview } from '@/components/sections/LiveInterview'
 import { Numbers } from '@/components/sections/Numbers'
 import { Moments } from '@/components/sections/Moments'
 import { ResumeReview } from '@/components/sections/ResumeReview'
+import { Brochure } from '@/components/sections/Brochure'
 import { Faq } from '@/components/sections/Faq'
 import { FinalCta } from '@/components/sections/FinalCta'
 import { Footer } from '@/components/layout/Footer'
@@ -37,6 +38,7 @@ export default function Home() {
         <Numbers />
         <Moments />
         <ResumeReview />
+        <Brochure />
         <Faq />
         <FinalCta />
       </main>

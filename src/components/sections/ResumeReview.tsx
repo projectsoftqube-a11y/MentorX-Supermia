@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import { gsap, useGSAP, ScrollTrigger, splitReveal, prefersReducedMotion, eyebrowIn } from '@/lib/gsap'
+import { ArrowRight } from 'lucide-react'
 import { REVIEW } from '@/data/landing'
 
 /** A phrase in the sample resume that the review points at */
@@ -231,7 +232,9 @@ export function ResumeReview() {
                 </p>
                 <p className="rv__change">
                   <s>{f.before}</s>
-                  <span aria-hidden="true">→</span>
+                  <span aria-hidden="true">
+                    <ArrowRight strokeWidth={2.4} />
+                  </span>
                   <b>{f.after}</b>
                 </p>
                 <p className="rv__why">{f.why}</p>

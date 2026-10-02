@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { gsap, useGSAP, ScrollTrigger, splitReveal, prefersReducedMotion, eyebrowIn } from '@/lib/gsap'
+import { ArrowRight, ArrowUp, Check, Mail, MessageCircleQuestion } from 'lucide-react'
 import { Img } from '@/components/ui/Img'
 import { FAQS, SITE } from '@/data/landing'
 
@@ -116,11 +117,11 @@ export function Faq() {
                 data-cursor="Ask"
               >
                 <span className="faq__chipmark" aria-hidden="true">
-                  {asked.includes(i) ? '✓' : '?'}
+                  {asked.includes(i) ? <Check strokeWidth={3} /> : <MessageCircleQuestion strokeWidth={2.2} />}
                 </span>
                 <span className="faq__chiptext">{item.q}</span>
                 <span className="faq__arrow" aria-hidden="true">
-                  →
+                  <ArrowRight strokeWidth={2.4} />
                 </span>
               </button>
             ))}
@@ -128,14 +129,14 @@ export function Faq() {
 
           <a className="faq__support" href={SITE.mailto} data-cursor="Email">
             <span className="faq__supporticon" aria-hidden="true">
-              ✉
+              <Mail strokeWidth={2.2} />
             </span>
             <span>
               <b>Still need help? Contact support</b>
               <span className="faq__supportmail">{SITE.email}</span>
             </span>
             <span className="faq__arrow" aria-hidden="true">
-              →
+              <ArrowRight strokeWidth={2.4} />
             </span>
           </a>
         </div>
@@ -183,7 +184,9 @@ export function Faq() {
 
           <div className="chat__input" aria-hidden="true">
             <span>Pick a question to ask…</span>
-            <span className="chat__send">↑</span>
+            <span className="chat__send">
+              <ArrowUp strokeWidth={2.6} />
+            </span>
           </div>
         </div>
       </div>

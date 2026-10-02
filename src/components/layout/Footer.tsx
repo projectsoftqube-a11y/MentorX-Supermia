@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import { gsap, useGSAP, prefersReducedMotion, whileVisible } from '@/lib/gsap'
+import { ArrowUp } from 'lucide-react'
 import { Img } from '@/components/ui/Img'
 import { HERO_DEMO, SITE } from '@/data/landing'
 
@@ -191,12 +192,6 @@ export function Footer() {
                 Your next practice question · <span className="ft__qrole">{HERO_DEMO[0].role}</span>
               </p>
               <p className="ft__qtext">“{HERO_DEMO[0].question}”</p>
-              <a href={SITE.appUrl} className="btn btn--cream btn--sm magnetic" data-cursor="Answer">
-                <span className="btn__label">Answer it now</span>
-                <span className="btn__icon" aria-hidden="true">
-                  →
-                </span>
-              </a>
             </div>
           </div>
 
@@ -225,7 +220,7 @@ export function Footer() {
               </p>
             </div>
             <a href="#top" className="ft__top" aria-label="Back to top" data-cursor="Top">
-              <svg viewBox="0 0 52 52" aria-hidden="true">
+              <svg className="ft__ring" viewBox="0 0 52 52" aria-hidden="true">
                 <circle cx="26" cy="26" r="22" className="ring__track" />
                 <circle
                   cx="26"
@@ -235,7 +230,7 @@ export function Footer() {
                   style={{ strokeDasharray: RING_C, strokeDashoffset: RING_C }}
                 />
               </svg>
-              <span aria-hidden="true">↑</span>
+              <ArrowUp className="ft__arrow" strokeWidth={2.5} aria-hidden="true" />
             </a>
           </div>
         </div>

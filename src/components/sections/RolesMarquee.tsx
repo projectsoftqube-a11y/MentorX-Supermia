@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
+import { Sparkle } from 'lucide-react'
 import { gsap, ScrollTrigger, useGSAP, prefersReducedMotion, whileVisible } from '@/lib/gsap'
 import { ROLES_ROW_A as ROW_A, ROLES_ROW_B as ROW_B } from '@/data/landing'
 
@@ -10,7 +11,9 @@ function Track({ items }: { items: string[] }) {
       {items.map((t) => (
         <span key={t} className="marquee__item">
           <span>{t}</span>
-          <i>✦</i>
+          <i>
+            <Sparkle fill="currentColor" strokeWidth={1} />
+          </i>
         </span>
       ))}
     </div>

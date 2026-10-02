@@ -23,7 +23,9 @@ export function Cursor() {
       const ringX = gsap.quickTo(ring, 'x', { duration: 0.45, ease: 'power3' })
       const ringY = gsap.quickTo(ring, 'y', { duration: 0.45, ease: 'power3' })
 
+      // Hidden until the pointer first moves (so it never sits parked in the corner), and while it's outside the window
       const onMove = contextSafe((e: PointerEvent) => {
+        el.classList.add('is-ready')
         dotX(e.clientX)
         dotY(e.clientY)
         ringX(e.clientX)
@@ -37,8 +39,10 @@ export function Cursor() {
         el.classList.toggle('is-link', Boolean(target) && !labelled)
         label.textContent = target?.dataset.cursor ?? ''
       }
+      const onLeave = () => el.classList.remove('is-ready')
       window.addEventListener('pointermove', onMove)
       window.addEventListener('pointerover', onOver)
+      document.documentElement.addEventListener('pointerleave', onLeave)
 
       // Magnetic buttons: pulled toward the pointer, spring back on leave
       const magnets = gsap.utils.toArray<HTMLElement>('.magnetic')
@@ -64,6 +68,7 @@ export function Cursor() {
       return () => {
         window.removeEventListener('pointermove', onMove)
         window.removeEventListener('pointerover', onOver)
+        document.documentElement.removeEventListener('pointerleave', onLeave)
         cleanups.forEach((fn) => fn())
       }
     },
