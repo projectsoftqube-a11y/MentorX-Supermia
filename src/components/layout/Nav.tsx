@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react'
 import Image from 'next/image'
+import { Mail } from 'lucide-react'
 import { gsap, ScrollTrigger, useGSAP, prefersReducedMotion } from '@/lib/gsap'
 import { BtnArrow } from '@/components/ui/BtnArrow'
 import { NAV_LINKS as LINKS, SITE } from '@/data/landing'
@@ -47,11 +48,14 @@ export function Nav({ base = '' }: { base?: string }) {
           ))}
         </nav>
         <div className="nav__actions">
-          <a href={SITE.appUrl} className="link-quiet">
-            Sign in
+          <a href={SITE.contactMailto} className="btn btn--ghost btn--sm nav__contact magnetic" data-cursor="Email">
+            <span className="btn__play btn__play--icon" aria-hidden="true">
+              <Mail strokeWidth={2.2} />
+            </span>
+            <span className="btn__label">Contact us</span>
           </a>
-          <a href={SITE.appUrl} className="btn btn--primary btn--sm magnetic" data-cursor="Go">
-            <span className="btn__label">Get started</span>
+          <a href={SITE.appUrl} className="btn btn--primary btn--sm magnetic" data-cursor="Login">
+            <span className="btn__label">Login</span>
             <BtnArrow />
           </a>
           <button
@@ -72,9 +76,9 @@ export function Nav({ base = '' }: { base?: string }) {
             {l.label}
           </a>
         ))}
-        <a href={SITE.appUrl}>Sign in</a>
+        <a href={SITE.contactMailto}>Contact us</a>
         <a href={SITE.appUrl} className="btn btn--primary">
-          Get started
+          Login
         </a>
       </div>
     </header>

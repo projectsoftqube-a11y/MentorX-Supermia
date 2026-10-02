@@ -8,6 +8,8 @@ export const SITE = {
   appUrl: 'https://app.mentorx.supermia.ai/',
   email: 'hello@supermia.ai',
   mailto: 'mailto:hello@supermia.ai',
+  /** The nav's "Contact us": opens an email with the subject filled in */
+  contactMailto: `mailto:hello@supermia.ai?subject=${encodeURIComponent('MentorX enquiry')}`,
   website: 'supermia.ai',
   websiteUrl: 'https://supermia.ai',
   office: ['2451 W Grapevine Mills Cir #547', 'Grapevine, TX 76051'],

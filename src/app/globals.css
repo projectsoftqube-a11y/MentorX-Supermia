@@ -350,11 +350,6 @@ body::after {
 .btn--xl .btn__icon {
   --icon: 48px;
 }
-.link-quiet {
-  font-weight: 600;
-  font-size: 14px;
-  color: var(--forest);
-}
 
 /* --------------------------------- Cursor --------------------------------- */
 .cursor {
@@ -495,7 +490,19 @@ body::after {
 .nav__actions {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
+}
+/* "Contact us": envelope badge on the left, so the padding mirrors the Login button */
+.btn--sm.nav__contact {
+  padding: 0 16px 0 6px;
+}
+.btn--sm .btn__play {
+  width: 28px;
+  height: 28px;
+}
+.btn--sm .btn__play svg {
+  width: 14px;
+  height: 14px;
 }
 .nav__burger {
   display: none;
@@ -5392,7 +5399,6 @@ body::after {
   .nav__logo img {
     height: 24px;
   }
-  .link-quiet,
   .nav__actions > .btn {
     display: none;
   }
