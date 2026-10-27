@@ -219,6 +219,13 @@ export function Footer({ base = '' }: { base?: string }) {
                 </a>{' '}
                 · Botfinity Inc.
               </p>
+              <span className="ft__divider" aria-hidden="true" />
+              <p className="ft__by">
+                Design &amp; Develop by{' '}
+                <a href="https://softqubes.com/" target="_blank" rel="noopener noreferrer">
+                  Softqube Technologies LLC
+                </a>
+              </p>
             </div>
             <a href="#top" className="ft__top" aria-label="Back to top" data-cursor="Top">
               <svg className="ft__ring" viewBox="0 0 52 52" aria-hidden="true">
